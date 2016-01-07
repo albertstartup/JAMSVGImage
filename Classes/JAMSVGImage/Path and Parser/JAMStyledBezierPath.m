@@ -98,7 +98,10 @@
     }
     if (self.strokeColor && self.path.lineWidth > 0.f) {
         if (self.strokeWidth) {
-          CGContextSetLineWidth(context, self.strokeWidth);
+          /* paths-data-19-f.svg has a path with a stroke-width of 42. Without this patch the corresponding bezier path's line width would always be 1.0.
+           */
+          // Uncomment the line below to see the diffrence in interface builder.
+          //CGContextSetLineWidth(context, self.strokeWidth);
         }
         CGContextSetStrokeColorWithColor(context, self.strokeColor.CGColor);
         CGContextAddPath(context, self.path.CGPath);
